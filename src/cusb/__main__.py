@@ -1,12 +1,12 @@
 """CUSB Hub Control
 
 Usage:
-  cusb set <port> (on|off) PATH
-  cusb get <port> PATH
-  cusb save PATH
-  cusb reset PATH
-  cusb factory_reset PATH
-  cusb -h | --help
+  pycusb set <port> (on|off) PATH
+  pycusb get <port> PATH
+  pycusb save PATH
+  pycusb reset PATH
+  pycusb factory_reset PATH
+  pycusb -h | --help
 
 Arguments:
   PATH          Path to serial device file controlling the hub.
