@@ -47,8 +47,8 @@ jobs:
     - name: Verify tag and dist version
       run: |
         dist_version=$(ls dist/pycusb-*.tar.gz | sed 's/.*-\(.*\).tar.gz/\1/')
-        if [ "${{ github.ref_name }}" != "$dist_version" ]; then
-            echo "Tag version (${{ github.ref_name }}) and dist version ($dist_version) differ!"
+        if [ "${{ github.ref_name }}" != "v$dist_version" ]; then
+            echo "Tag version (${{ github.ref_name }}) and dist version (v$dist_version) differ!"
             exit 1
         fi
     - name: Publish distribution 📦 to PyPI
