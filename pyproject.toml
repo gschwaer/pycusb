@@ -31,3 +31,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/cusb"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "logs/",
+  "example.py",
+]
