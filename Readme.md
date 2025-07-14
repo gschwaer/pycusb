@@ -28,19 +28,28 @@ with CUsb(path_to_device) as hub:
 $ pycusb --help
 CUSB Hub Control
 
+This CLI tool is able to *set* or *get* the state of the managed USB hub. It
+can *save* the current state as the default, so after a power loss, this state
+will be restored. The hub can also be *reset*, or a *factory reset* can be
+issued, resetting any stored state and/or set password.
+
+If a password is required, it can be provided to all commands as an option. By
+default the implementation uses "pass", which is the factory default. The *get*
+command does not need the password to succeed.
+
 Usage:
-  pycusb set <port> (on|off) PATH
-  pycusb get <port> PATH
-  pycusb save PATH
-  pycusb reset PATH
-  pycusb factory_reset PATH
+  pycusb [options] get <port> PATH
+  pycusb [options] set <port> (on|off) PATH
+  pycusb [options] save PATH
+  pycusb [options] reset PATH
+  pycusb [options] factory_reset PATH
   pycusb -h | --help
 
 Arguments:
-  PATH          Path to serial device file controlling the hub.
+  PATH                      Path to serial device file controlling the hub.
 
 Options:
-  -h --help     Show this help message.
+  -p --password=<password>  Show this help message [default: pass].
 ```
 
 Example: switch off port 1 for 1 second
