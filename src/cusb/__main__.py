@@ -1,5 +1,10 @@
 """CUSB Hub Control
 
+This CLI tool is able to *set* or *get* the state of the managed USB hub. It can *save*
+the current state as the default, so after a power loss, this state will be restored.
+The hub can also be *reset*, or a *factory reset* can be issued, resetting any stored
+state and/or set password.
+
 Usage:
   pycusb set <port> (on|off) PATH
   pycusb get <port> PATH
