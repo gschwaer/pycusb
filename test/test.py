@@ -1,5 +1,3 @@
-# test_serial_mock.py
-
 from typing import Optional
 import pytest
 import pytest_mock
@@ -45,7 +43,6 @@ def cusb_mock(mocker: pytest_mock.MockerFixture):
     return cusb.CUsb("__don't_care__")
 
 
-# $ ./cusbi /S:ttyUSB9 1:1
 def test_port_power_on_while_port_power_is_on(cusb_mock: cusb.CUsb):
     set_write_read_map(
         {
