@@ -6,7 +6,7 @@ companies EXSYS and StarTech.
 
 ## Usage
 
-### as library
+### Usage as library
 
 ```python
 from cusb import CUsb
@@ -22,7 +22,7 @@ with CUsb(path_to_device) as hub:
     hub.port_power_on(port, True)
 ```
 
-### as CLI tool
+### Usage as CLI tool
 
 ```text
 $ pycusb --help
@@ -62,7 +62,7 @@ pycusb set 1 on /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_B0036Y2H-if00-port0
 
 ## Installation
 
-### as library
+### Installation as library
 
 Add `pycusb` to your `pyproject.toml`:
 
@@ -73,7 +73,7 @@ dependencies = [
 ]
 ```
 
-### as CLI tool
+### Installation as CLI tool
 
 Create and activate a virtual environment, then run
 
