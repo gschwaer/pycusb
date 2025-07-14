@@ -7,6 +7,7 @@ license = "MIT-0"
 version = "0.0.0"
 dependencies = [
     "pyserial == 3.5",  # No information on versioning schema, using fixed version.
+    "docopt == 0.6.2",  # Semantic versioning, but not stable yet. Version freeze recommended.
 ]
 
 [project.urls]
