@@ -38,12 +38,12 @@ dependencies = [
 Create and activate a virtual environment, then run
 
 ```bash
-pip install git+https://github.com/gschwaer/pycusb.git
+pip install pycusb
 ```
 
 ## Development
 
-Clone repo, create and activate a virtual environment, then install dependencies with:
+Clone the repo, create and activate a virtual environment, then install dependencies with:
 
 ```bash
 pip install -e '.[dev]'
