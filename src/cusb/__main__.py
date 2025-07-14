@@ -75,5 +75,5 @@ def main() -> None:
             print(f"Resetting hub to factory defaults.")
             hub.factory_reset()
 
-
-main()
+if __name__ == "__main__":
+    main()
