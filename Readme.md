@@ -19,3 +19,38 @@ with CUsb(path_to_device) as hub:
     time.sleep(1)
     hub.port_power_on(port, True)
 ```
+
+## Installation
+
+### as library
+
+Add `pycusb` to your `pyproject.toml`:
+
+```toml
+[project]
+dependencies = [
+    "pycusb",
+]
+```
+
+### as CLI tool
+
+Create and activate a virtual environment, then run
+
+```bash
+pip install git+https://github.com/gschwaer/pycusb.git
+```
+
+## Development
+
+Clone repo, create and activate a virtual environment, then install dependencies with:
+
+```bash
+pip install -e '.[dev]'
+```
+
+Test with
+
+```bash
+pytest test/test.py
+```
