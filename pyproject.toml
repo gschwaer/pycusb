@@ -10,6 +10,17 @@ dependencies = [
     "docopt == 0.6.2",  # Semantic versioning, but not stable yet. Version freeze recommended.
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-mock",
+    "types-docopt",
+    "types-pyserial",
+]
+
+[project.scripts]
+pycusb = "cusb.__main__:main"
+
 [project.urls]
 source = "https://github.com/gschwaer/pycusb"
 issues = "https://github.com/gschwaer/pycusb"
