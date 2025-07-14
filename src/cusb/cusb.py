@@ -104,3 +104,19 @@ class CUsb:
 
         current_states = self._set_port_states(requested_states)
         assert current_states == requested_states
+
+    def port_power_is_on(self, port: int) -> bool:
+        current_states = self._get_port_states()
+
+        return current_states & (1 << (port - 1)) != 0
+
+    def save_current_state_as_default(self):
+        resp = self._send_cmd("WP" + self.password)
+        assert resp == "G"
+
+    def factory_reset(self):
+        resp = self._send_cmd("RD" + self.password)
+        assert resp == "G"
+
+    def reset(self):
+        self.s.write(bytes("RH" + self.password + "\r", encoding="ascii"))
