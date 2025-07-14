@@ -24,7 +24,7 @@ with CUsb(path_to_device) as hub:
 
 ### as CLI tool
 
-```bash
+```text
 $ pycusb --help
 CUSB Hub Control
 
@@ -54,7 +54,7 @@ Options:
 
 Example: switch off port 1 for 1 second
 
-```bash
+```text
 pycusb set 1 off /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_B0036Y2H-if00-port0
 sleep 1
 pycusb set 1 on /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_B0036Y2H-if00-port0
@@ -77,7 +77,7 @@ dependencies = [
 
 Create and activate a virtual environment, then run
 
-```bash
+```text
 pip install pycusb
 ```
 
@@ -85,12 +85,12 @@ pip install pycusb
 
 Clone the repo, create and activate a virtual environment, then install dependencies with:
 
-```bash
+```text
 pip install -e '.[dev]'
 ```
 
 Test with
 
-```bash
+```text
 pytest test/test.py
 ```
