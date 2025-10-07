@@ -23,10 +23,6 @@ class CUsb:
 
     def __enter__(self):
         self.s = serial.Serial(self.path, timeout=1)
-        resp = self._send_cmd("?Q")
-        # This code was only tested with this version reported by the hub. If you find a
-        # different version in the field, lmk.
-        assert resp == "CENTOS000104v04", f"Unknown firmware version: {resp}"
         return self
 
     def __exit__(self, type, value, traceback):  # type: ignore
