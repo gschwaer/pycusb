@@ -43,6 +43,12 @@ def cusb_mock(mocker: pytest_mock.MockerFixture):
     return cusb.CUsb("__don't_care__")
 
 
+@pytest.fixture
+def cusb_force_mock(mocker: pytest_mock.MockerFixture):
+    mocker.patch("serial.Serial", new=SerialMock)
+    return cusb.CUsb("__don't_care__", force=True)
+
+
 def test_port_power_on_while_port_power_is_on(cusb_mock: cusb.CUsb):
     set_write_read_map(
         {
@@ -132,3 +138,25 @@ def test_reset(cusb_mock: cusb.CUsb):
     )
     with cusb_mock as hub:
         hub.reset()
+
+
+def test_unknown_version_without_force_raises(cusb_mock: cusb.CUsb):
+    set_write_read_map({b"?Q": b"OTHER"})
+    with pytest.raises(
+        RuntimeError,
+        match=r"Unknown firmware version: OTHER \(check --help for --force\)",
+    ):
+        with cusb_mock:
+            pass
+
+
+def test_unknown_version_with_force(
+    cusb_force_mock: cusb.CUsb, capsys: pytest.CaptureFixture[str]
+):
+    set_write_read_map({b"?Q": b"OTHER"})
+    with cusb_force_mock:
+        pass
+
+    captured = capsys.readouterr()
+    assert "Unknown firmware version: OTHER" in captured.err
+    assert "--force was specified" in captured.err

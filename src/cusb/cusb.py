@@ -1,8 +1,14 @@
+import sys
+
 import serial
 
 
+EXPECTED_FIRMWARE_VERSION = "CENTOS000104v04"
+
+
 class CUsb:
-    def __init__(self, path: str, password: str = "pass"):
+
+    def __init__(self, path: str, password: str = "pass", force: bool = False):
         """Initialize the CUsb interface
 
         This will not yet connect to the interface. For that use a resource allocator.
@@ -16,17 +22,27 @@ class CUsb:
             path (str): Path or COM port of the serial device controlling the hub.
             password (str, optional): Password for the hub. Defaults to "pass", which is
                                       the factory default.
+            force (bool, optional): Continue even if the firmware version is unexpected.
         """
         self.path = path
         # password is padded with spaces to exactly 8 byte
         self.password = "{:<8}".format(password)
+        self.force = force
 
     def __enter__(self):
         self.s = serial.Serial(self.path, timeout=1)
         resp = self._send_cmd("?Q")
         # This code was only tested with this version reported by the hub. If you find a
         # different version in the field, lmk.
-        assert resp == "CENTOS000104v04", f"Unknown firmware version: {resp}"
+        if resp != EXPECTED_FIRMWARE_VERSION:
+            message = f"Unknown firmware version: {resp}"
+            if self.force:
+                print(
+                    f"{message}. Continuing because --force was specified.",
+                    file=sys.stderr,
+                )
+            else:
+                raise RuntimeError(f"{message} (check --help for --force)")
         return self
 
     def __exit__(self, type, value, traceback):  # type: ignore

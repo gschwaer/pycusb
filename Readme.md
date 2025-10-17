@@ -50,6 +50,8 @@ Arguments:
 
 Options:
   -p --password=<password>  Password for the hub [default: pass].
+  --force                   Continue despite unknown firmware version. This may
+                            have unknown consequences and could cause damage.
 ```
 
 Example: switch off port 1 for 1 second

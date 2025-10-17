@@ -22,6 +22,8 @@ Arguments:
 
 Options:
   -p --password=<password>  Password for the hub [default: pass].
+  --force                   Continue despite unknown firmware version. This may
+                            have unknown consequences and could cause damage.
 """
 
 # import argparse
@@ -39,6 +41,7 @@ def main() -> None:
     )
 
     password = args["--password"]
+    force = args["--force"]
     port = None
     if args["<port>"]:
         port = int(args["<port>"])
@@ -50,7 +53,7 @@ def main() -> None:
         assert args["on"] and not args["off"] or not args["on"] and args["off"]
         action = args["on"]
 
-    with cusb.CUsb(path, password=password) as hub:
+    with cusb.CUsb(path, password=password, force=force) as hub:
 
         if args["set"]:
             assert port is not None
@@ -77,6 +80,7 @@ def main() -> None:
         elif args["factory_reset"]:
             print(f"Resetting hub to factory defaults.")
             hub.factory_reset()
+
 
 if __name__ == "__main__":
     main()
