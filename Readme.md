@@ -49,7 +49,7 @@ Arguments:
   PATH                      Path to serial device file controlling the hub.
 
 Options:
-  -p --password=<password>  Show this help message [default: pass].
+  -p --password=<password>  Password for the hub [default: pass].
 ```
 
 Example: switch off port 1 for 1 second
