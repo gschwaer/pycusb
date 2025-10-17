@@ -3,7 +3,10 @@ import sys
 import serial
 
 
-EXPECTED_FIRMWARE_VERSION = "CENTOS000104v04"
+WORKING_FIRMWARE_VERSIONS = [
+    "CENTOS000104v04",  # e.g., EX-1504HMS (@gschwaer)
+    "CENTOS000207v2",
+]
 
 
 class CUsb:
@@ -34,7 +37,7 @@ class CUsb:
         resp = self._send_cmd("?Q")
         # This code was only tested with this version reported by the hub. If you find a
         # different version in the field, lmk.
-        if resp != EXPECTED_FIRMWARE_VERSION:
+        if resp not in WORKING_FIRMWARE_VERSIONS:
             message = f"Unknown firmware version: {resp}"
             if self.force:
                 print(
