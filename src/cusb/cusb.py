@@ -3,7 +3,12 @@ import sys
 import serial
 
 
-EXPECTED_FIRMWARE_VERSION = "CENTOS000104v04"
+# The hub reports a firmware version. This code was only tested with the following
+# versions. If you find a different version that works fine, lmk.
+WORKING_FIRMWARE_VERSIONS = [
+    "CENTOS000104v04",  # e.g., EXSYS EX-1504HMS (@gschwaer)
+    "CENTOS000207v02",  # e.g., StarTech 5G7AINDRM-USB-A-HUB (@ajfite)
+]
 
 
 class CUsb:
@@ -32,9 +37,7 @@ class CUsb:
     def __enter__(self):
         self.s = serial.Serial(self.path, timeout=1)
         resp = self._send_cmd("?Q")
-        # This code was only tested with this version reported by the hub. If you find a
-        # different version in the field, lmk.
-        if resp != EXPECTED_FIRMWARE_VERSION:
+        if resp not in WORKING_FIRMWARE_VERSIONS:
             message = f"Unknown firmware version: {resp}"
             if self.force:
                 print(
