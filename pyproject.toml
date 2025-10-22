@@ -4,7 +4,7 @@ description = "Python implementation of the cusb interface for managed USB hubs"
 authors = [{ name = "Gero Schwäricke", email = "gero.schwaericke@posteo.de" }]
 readme = "Readme.md"
 license = "MIT-0"
-version = "0.3.0"
+dynamic = ["version"]
 dependencies = [
     "pyserial == 3.5",  # No information on versioning schema, using fixed version.
     "docopt == 0.6.2",  # Semantic versioning, but not stable yet. Version freeze recommended.
@@ -26,8 +26,11 @@ source = "https://github.com/gschwaer/pycusb"
 issues = "https://github.com/gschwaer/pycusb"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "versioningit"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "versioningit"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/cusb"]
@@ -38,3 +41,5 @@ exclude = [
     "logs/",
     "example.py",
 ]
+
+[tool.versioningit]
