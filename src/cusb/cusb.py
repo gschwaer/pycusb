@@ -7,7 +7,8 @@ import serial
 # versions. If you find a different version that works fine, lmk.
 WORKING_FIRMWARE_VERSIONS = [
     "CENTOS000104v04",  # e.g., EXSYS EX-1504HMS (@gschwaer)
-    "CENTOS000207v02",  # e.g., StarTech 5G7AINDRM-USB-A-HUB (@ajfite)
+    "CENTOS000207v02",  # e.g., StarTech 5G7AINDRM-USB-A-HUB purchased 2024 (@ajfite)
+    "CENTOS000207v04",  # e.g., StarTech 5G7AINDRM-USB-A-HUB purchased 2026 (@ajfite)
 ]
 
 
